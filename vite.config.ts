@@ -6,5 +6,21 @@ import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr()],
+  plugins: [
+    react(),
+    svgr({
+      include: '**/*.svg',
+      svgrOptions: {
+        exportType: 'named',
+        namedExport: 'ReactComponent',
+      },
+    }),
+  ],
+  resolve: {
+    alias: {
+      '@': '/src',
+      '@UI': '/src/UI',
+      '@styles': '/src/styles',
+    },
+  },
 })
